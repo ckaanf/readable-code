@@ -1,5 +1,9 @@
 package cleancode.studycafe.tobe.model;
 
+import java.util.List;
+
+import cleancode.studycafe.tobe.exception.AppException;
+
 public class StudyCafePass {
 
     private final StudyCafePassType passType;
@@ -46,5 +50,7 @@ public class StudyCafePass {
         }
         return "";
     }
-
+    public boolean isSameType(StudyCafePassType type) {
+        return this.passType == type;
+    }
 }
