@@ -1,4 +1,4 @@
-package cleancode.studycafe.tobe.model;
+package cleancode.studycafe.tobe.model.studycafepass;
 
 import cleancode.studycafe.tobe.exception.AppException;
 

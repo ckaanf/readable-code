@@ -1,8 +1,4 @@
-package cleancode.studycafe.tobe.model;
-
-import java.util.List;
-
-import cleancode.studycafe.tobe.exception.AppException;
+package cleancode.studycafe.tobe.model.studycafepass;
 
 public class StudyCafePass {
 
@@ -36,6 +32,10 @@ public class StudyCafePass {
 
     public double getDiscountRate() {
         return discountRate;
+    }
+
+    public int getDiscountPrice() {
+        return (int) (price * discountRate);
     }
 
     public String display() {
