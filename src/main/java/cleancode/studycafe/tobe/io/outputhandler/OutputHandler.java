@@ -1,9 +1,7 @@
 package cleancode.studycafe.tobe.io.outputhandler;
 
-import java.util.List;
-
-import cleancode.studycafe.tobe.model.StudyCafeLockerPass;
-import cleancode.studycafe.tobe.model.StudyCafePass;
+import cleancode.studycafe.tobe.model.studycafelocker.StudyCafeLockerPass;
+import cleancode.studycafe.tobe.model.studycafepass.StudyCafePass;
 
 public interface OutputHandler {
 

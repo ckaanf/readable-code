@@ -1,9 +1,7 @@
 package cleancode.studycafe.tobe.io.outputhandler;
 
-import cleancode.studycafe.tobe.model.StudyCafeLockerPass;
-import cleancode.studycafe.tobe.model.StudyCafePass;
-
-import java.util.List;
+import cleancode.studycafe.tobe.model.studycafelocker.StudyCafeLockerPass;
+import cleancode.studycafe.tobe.model.studycafepass.StudyCafePass;
 
 public class ConsoleOutputHandler implements OutputHandler {
 
@@ -11,15 +9,7 @@ public class ConsoleOutputHandler implements OutputHandler {
     public void show(String message) {
         System.out.println(message);
     }
-    @Override
-    public void showPassListForSelection(List<StudyCafePass> passes) {
-        System.out.println();
-        System.out.println("이용권 목록");
-        for (int index = 0; index < passes.size(); index++) {
-            StudyCafePass pass = passes.get(index);
-            System.out.println(String.format("%s. ", index + 1) + pass.display());
-        }
-    }
+
     @Override
     public void askLockerPass(StudyCafeLockerPass lockerPass) {
         System.out.println();
