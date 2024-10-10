@@ -6,6 +6,7 @@ import java.util.Optional;
 import cleancode.studycafe.tobewb.exception.AppException;
 import cleancode.studycafe.tobewb.io.StudyCafeFileHandler;
 import cleancode.studycafe.tobewb.io.StudyCafeIOHandler;
+import cleancode.studycafe.tobewb.model.order.StudyCafePassOrder;
 import cleancode.studycafe.tobewb.model.pass.locker.StudyCafeLockerPass;
 import cleancode.studycafe.tobewb.model.pass.locker.StudyCafeLockerPasses;
 import cleancode.studycafe.tobewb.model.pass.seat.StudyCafeSeatPass;
@@ -23,10 +24,12 @@ public class StudyCafePassMachine {
 
 			StudyCafeSeatPass selectedPass = selectPass();
 			Optional<StudyCafeLockerPass> optionalLockerPass = selectLockerPass(selectedPass);
-			optionalLockerPass.ifPresentOrElse(
-				lockerPass -> ioHandler.showPassOrderSummary(selectedPass, lockerPass),
-				() -> ioHandler.showPassOrderSummary(selectedPass)
+			StudyCafePassOrder passOrder = StudyCafePassOrder.of(
+				selectedPass,
+				optionalLockerPass.orElse(null)
 			);
+
+			ioHandler.showPassOrderSummary(passOrder);
 
 		} catch (AppException e) {
 			ioHandler.showSimpleMessage(e.getMessage());
