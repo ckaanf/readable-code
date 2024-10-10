@@ -12,8 +12,9 @@ import cleancode.studycafe.tobewb.model.pass.seat.StudyCafeSeatPass;
 import cleancode.studycafe.tobewb.model.pass.StudyCafePassType;
 import cleancode.studycafe.tobewb.model.pass.seat.StudyCafeSeatPasses;
 
-public class StudyCafeFileHandler {
+public class StudyCafeFileHandler implements PassReader {
 
+    @Override
     public StudyCafeSeatPasses readStudyCafePasses() {
         try {
             List<String> lines = Files.readAllLines(Paths.get("src/main/resources/cleancode/studycafe/pass-list.csv"));
@@ -35,6 +36,7 @@ public class StudyCafeFileHandler {
         }
     }
 
+    @Override
     public StudyCafeLockerPasses readLockerPasses() {
         try {
             List<String> lines = Files.readAllLines(Paths.get("src/main/resources/cleancode/studycafe/locker.csv"));
