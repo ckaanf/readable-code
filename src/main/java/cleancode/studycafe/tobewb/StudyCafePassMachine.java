@@ -6,10 +6,10 @@ import java.util.Optional;
 import cleancode.studycafe.tobewb.exception.AppException;
 import cleancode.studycafe.tobewb.io.StudyCafeFileHandler;
 import cleancode.studycafe.tobewb.io.StudyCafeIOHandler;
-import cleancode.studycafe.tobewb.model.StudyCafeLockerPass;
-import cleancode.studycafe.tobewb.model.StudyCafeLockerPasses;
-import cleancode.studycafe.tobewb.model.StudyCafePass;
-import cleancode.studycafe.tobewb.model.StudyCafePassType;
+import cleancode.studycafe.tobewb.model.pass.locker.StudyCafeLockerPass;
+import cleancode.studycafe.tobewb.model.pass.locker.StudyCafeLockerPasses;
+import cleancode.studycafe.tobewb.model.pass.seat.StudyCafeSeatPass;
+import cleancode.studycafe.tobewb.model.pass.StudyCafePassType;
 
 public class StudyCafePassMachine {
 
@@ -21,7 +21,7 @@ public class StudyCafePassMachine {
 			ioHandler.showWelcomeMessage();
 			ioHandler.showAnnouncement();
 
-			StudyCafePass selectedPass = selectPass();
+			StudyCafeSeatPass selectedPass = selectPass();
 			Optional<StudyCafeLockerPass> optionalLockerPass = selectLockerPass(selectedPass);
 			optionalLockerPass.ifPresentOrElse(
 				lockerPass -> ioHandler.showPassOrderSummary(selectedPass, lockerPass),
@@ -35,19 +35,19 @@ public class StudyCafePassMachine {
 		}
 	}
 
-	private StudyCafePass selectPass() {
+	private StudyCafeSeatPass selectPass() {
 
 		StudyCafePassType passType = ioHandler.askPassTypeSelecting();
-		List<StudyCafePass> passCandidates = findPassCandidatesBy(passType);
+		List<StudyCafeSeatPass> passCandidates = findPassCandidatesBy(passType);
 
 		return ioHandler.askPassSelecting(passCandidates);
 	}
 
-	private List<StudyCafePass> findPassCandidatesBy(StudyCafePassType studyCafePassType) {
+	private List<StudyCafeSeatPass> findPassCandidatesBy(StudyCafePassType studyCafePassType) {
 		return studyCafeFileHandler.readStudyCafePasses().findPassBy(studyCafePassType);
 	}
 
-	private Optional<StudyCafeLockerPass> selectLockerPass(StudyCafePass selectedPass) {
+	private Optional<StudyCafeLockerPass> selectLockerPass(StudyCafeSeatPass selectedPass) {
 		// TODO 고정 좌석 타입이 아닌가?
 		// 사물함 옵션을 사용할 수 있는 타입이 아닌가?
 		if (selectedPass.cannotUseLocker()) {
@@ -68,7 +68,7 @@ public class StudyCafePassMachine {
 		return Optional.empty();
 	}
 
-	private Optional<StudyCafeLockerPass> findLockerPassCandidateBy(StudyCafePass pass) {
+	private Optional<StudyCafeLockerPass> findLockerPassCandidateBy(StudyCafeSeatPass pass) {
 		StudyCafeLockerPasses allLockerPasses = studyCafeFileHandler.readLockerPasses();
 		return allLockerPasses.findLockerPassBy(pass);
 	}

@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import cleancode.studycafe.tobewb.exception.AppException;
-import cleancode.studycafe.tobewb.model.StudyCafePass;
-import cleancode.studycafe.tobewb.model.StudyCafePassType;
+import cleancode.studycafe.tobewb.model.pass.seat.StudyCafeSeatPass;
+import cleancode.studycafe.tobewb.model.pass.StudyCafePassType;
 
 public class InputHandler {
 
@@ -26,7 +26,7 @@ public class InputHandler {
         throw new AppException("잘못된 입력입니다.");
     }
 
-    public StudyCafePass getSelectPass(List<StudyCafePass> passes) {
+    public StudyCafeSeatPass getSelectPass(List<StudyCafeSeatPass> passes) {
         String userInput = SCANNER.nextLine();
         int selectedIndex = Integer.parseInt(userInput) - 1;
         return passes.get(selectedIndex);

@@ -1,4 +1,4 @@
-package cleancode.studycafe.tobewb.model;
+package cleancode.studycafe.tobewb.model.pass;
 
 import java.util.Set;
 
