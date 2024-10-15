@@ -1,12 +1,11 @@
-package cleancode.studycafe.tobe.model.stub;
+package cleancode.studycafe.tobe.model.stub.seatpass;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import cleancode.studycafe.tobe.model.pass.StudyCafePassType;
 import cleancode.studycafe.tobe.model.pass.StudyCafeSeatPass;
 
-public class StudyCafeSeatPassStubList {
+public class StudyCafeSeatPassListStub {
 	public static List<StudyCafeSeatPass> getSeatPassList() {
 		return List.of(
 			StudyCafeSeatPass.of(StudyCafePassType.HOURLY, 2, 4000, 0.0),
