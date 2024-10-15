@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import cleancode.studycafe.tobe.model.pass.StudyCafePassType;
 import cleancode.studycafe.tobe.model.pass.StudyCafeSeatPass;
-import cleancode.studycafe.tobe.model.stub.StudyCafeLockerPassStubList;
+import cleancode.studycafe.tobe.model.stub.lockerpass.StudyCafeLockerPassListStub;
 
 class StudyCafeLockerPassesTest {
 
@@ -19,13 +19,13 @@ class StudyCafeLockerPassesTest {
 		// given
 		StudyCafeSeatPass seatPass = StudyCafeSeatPass.of(StudyCafePassType.FIXED, 4, 250000, 0.1);
 		StudyCafeLockerPasses studyCafeLockerPasses = StudyCafeLockerPasses.of(
-			StudyCafeLockerPassStubList.getLockerPassList());
+			StudyCafeLockerPassListStub.getLockerPassList());
 
 		// when
 		Optional<StudyCafeLockerPass> studyCafeLockerPass = studyCafeLockerPasses.findLockerPassBy(seatPass);
 
 		// then
-		// Optional 객체 있는 지 먼저 검증하고 그 다음에 있으면 안에 값 검증 체이닝으로
+		// BETTER : Optional 객체 있는 지 먼저 검증하고 그 다음에 있으면 안에 값 검증 체이닝으로
 		assertThat(studyCafeLockerPass.get().getDuration()).isEqualTo(seatPass.getDuration());
 
 		assertThat(studyCafeLockerPass).isNotEmpty()
@@ -40,7 +40,7 @@ class StudyCafeLockerPassesTest {
 		// given
 		StudyCafeSeatPass seatPass = StudyCafeSeatPass.of(StudyCafePassType.WEEKLY, 4, 250000, 0.1);
 		StudyCafeLockerPasses studyCafeLockerPasses = StudyCafeLockerPasses.of(
-			StudyCafeLockerPassStubList.getLockerPassList());
+			StudyCafeLockerPassListStub.getLockerPassList());
 
 		// when
 		Optional<StudyCafeLockerPass> studyCafeLockerPass = studyCafeLockerPasses.findLockerPassBy(seatPass);
